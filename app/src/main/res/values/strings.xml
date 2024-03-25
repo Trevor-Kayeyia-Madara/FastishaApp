@@ -5,4 +5,9 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="password">Password</string>
     <string name="email">email</string>
+    <string name="full_names">Full Names</string>
+    <string name="emailaddress">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="passwordsignup">Password</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
