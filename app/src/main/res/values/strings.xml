@@ -10,4 +10,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="passwordsignup">Password</string>
     <string name="phone_number">Phone Number</string>
+    <string name="todo">TODO</string>
+    <string name="this_app_was_developed_by">This App was developed by</string>
 </resources>
