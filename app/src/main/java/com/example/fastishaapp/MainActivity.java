@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Sign in successful",
                                     Toast.LENGTH_SHORT).show();
                             // You can add code here to navigate to another activity upon successful login
+                            Intent intent = new Intent(MainActivity.this, Customer.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
