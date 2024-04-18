@@ -22,7 +22,7 @@ public class Loading_page extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Loading_page.this, SignUpActivity.class);
+                Intent intent = new Intent(Loading_page.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
