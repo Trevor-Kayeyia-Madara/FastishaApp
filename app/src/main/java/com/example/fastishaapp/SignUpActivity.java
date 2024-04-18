@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
+    TextView login;
     EditText nameEditText, emailEditText, passwordEditText, phoneEditText;
     Button signUpButton;
     FirebaseAuth mAuth;
@@ -44,6 +46,15 @@ public class SignUpActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.editTextTextPassword);
         phoneEditText = findViewById(R.id.editTextPhone);
         signUpButton = findViewById(R.id.signUpButton);
+        login = findViewById(R.id.login);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
