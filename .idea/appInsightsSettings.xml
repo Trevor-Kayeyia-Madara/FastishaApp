@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.fastishaapp" />
-                  <option name="mobileSdkAppId" value="1:670557493065:android:8fbff78066642823062c98" />
-                  <option name="projectId" value="fastishaapp-d8776" />
-                  <option name="projectNumber" value="670557493065" />
+                  <option name="mobileSdkAppId" value="1:592242404796:android:3b0762a4ce342945090fb9" />
+                  <option name="projectId" value="fastishaapp-56daf" />
+                  <option name="projectNumber" value="592242404796" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
