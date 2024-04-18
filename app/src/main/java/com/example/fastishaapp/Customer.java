@@ -18,12 +18,12 @@ public class Customer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_customer);
         replaceFragment(new HomeFragment());
-
-        BottomNavigationView bottomNavigationView = null;
+        
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
-            int itemId = menuItem.getItemId();
+            int itemId =menuItem.getItemId();
 
             if(itemId == R.id.home){
                 replaceFragment(new HomeFragment());
@@ -34,8 +34,6 @@ public class Customer extends AppCompatActivity {
             }
             return true;
         });
-
-
     }
 
     private void replaceFragment(Fragment fragment){
