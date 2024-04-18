@@ -6,12 +6,12 @@
         android:icon="@drawable/home_icon"
         />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/payment"
         android:title="Payment"
         android:icon="@drawable/wallet"
         />
     <item
-        android:id="@+id/settings"
+        android:id="@+id/profile"
         android:title="Profile"
         android:icon="@drawable/profile"
         />

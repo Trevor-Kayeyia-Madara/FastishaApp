@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fastishaapp.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Customer extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -20,6 +21,19 @@ public class Customer extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
 
+        BottomNavigationView bottomNavigationView = null;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            int itemId = menuItem.getItemId();
+
+            if(itemId == R.id.home){
+                replaceFragment(new HomeFragment());
+            } else if(itemId == R.id.payment) {
+                replaceFragment(new PaymentFragment());
+            }else if(itemId == R.id.profile) {
+                replaceFragment(new ProfileFragment());
+            }
+            return true;
+        });
 
 
     }
