@@ -27,7 +27,9 @@ public class Customer extends AppCompatActivity {
 
             if(itemId == R.id.home){
                 replaceFragment(new HomeFragment());
-            } else if(itemId == R.id.payment) {
+            }else if(itemId == R.id.shipment){
+                replaceFragment(new ShipmentFragment());
+            }else if(itemId == R.id.payment) {
                 replaceFragment(new PaymentFragment());
             }else if(itemId == R.id.profile) {
                 replaceFragment(new ProfileFragment());
