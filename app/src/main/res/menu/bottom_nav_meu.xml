@@ -6,6 +6,10 @@
         android:icon="@drawable/home_icon"
         />
     <item
+        android:id="@+id/shipment"
+        android:title="Shipment"
+        android:icon="@drawable/shipment"/>
+    <item
         android:id="@+id/payment"
         android:title="Payment"
         android:icon="@drawable/wallet"
@@ -15,4 +19,5 @@
         android:title="Profile"
         android:icon="@drawable/profile"
         />
+
 </menu>

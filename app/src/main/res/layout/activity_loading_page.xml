@@ -36,13 +36,13 @@
         android:layout_width="238dp"
         android:layout_height="296dp"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="140dp"
         android:layout_marginEnd="163dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.255"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fastisha_launcher"
-        android:contentDescription="TODO"
         tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
