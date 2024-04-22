@@ -36,9 +36,13 @@ public class ShipmentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 EditText edtItem = view.findViewById(R.id.edtItem);
+                EditText editDescription = view.findViewById(R.id.edtDescription);
+
                 TextView txtItem = view.findViewById(R.id.txtItem);
-                String itemText = edtItem.getText().toString();
-                txtItem.setText(itemText);
+                TextView txtDescription = view.findViewById(R.id.txtDescription);
+
+                txtItem.setText(edtItem.getText().toString());
+                txtDescription.setText(editDescription.getText().toString());
             }
         });
     }
