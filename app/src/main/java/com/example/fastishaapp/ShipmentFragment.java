@@ -28,7 +28,8 @@ import java.util.Locale;
 public class ShipmentFragment extends Fragment implements LocationListener {
 
     private LocationManager locationManager;
-    private TextView fromLocation;
+    private TextView fromLocation, myLocation;
+
 
     public ShipmentFragment() {
         // Required empty public constructor
@@ -50,6 +51,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         super.onViewCreated(view, savedInstanceState);
         Button confirm = view.findViewById(R.id.btnConfirm);
         fromLocation = view.findViewById(R.id.txtFromLocation);
+        myLocation = view.findViewById(R.id.txtLocation);
 
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{
@@ -91,6 +93,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
             String address = addresses.get(0).getAddressLine(0);
 
             fromLocation.setText(address);
+            myLocation.setText(address);
         } catch (Exception e) {
             e.printStackTrace();
         }
