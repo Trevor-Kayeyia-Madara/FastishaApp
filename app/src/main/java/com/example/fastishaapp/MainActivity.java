@@ -3,6 +3,7 @@ package com.example.fastishaapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
    Button loginButton;
    FirebaseAuth mAuth;
     TextView signup;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +41,20 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         signup = findViewById(R.id.signup);
 
+        progressBar = findViewById(R.id.loginProgressBar);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                signIn(email, password);
+                if(email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Plese enter both email and password", Toast.LENGTH_SHORT).show();
+                }else{
+                    signIn(email, password);
+                }
             }
         });
 
@@ -58,10 +67,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void signIn(String email, String password) {
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             // Sign in success
                             Toast.makeText(MainActivity.this, "Sign in successful",
