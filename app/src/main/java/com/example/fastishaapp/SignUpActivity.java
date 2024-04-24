@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button signUpButton;
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.editTextPhone);
         signUpButton = findViewById(R.id.signUpButton);
         login = findViewById(R.id.login);
+        progressBar = findViewById(R.id.signupProgressBar);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,27 +72,32 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
     private void signUpUser() {
+        progressBar.setVisibility(View.VISIBLE);
         final String fullName = nameEditText.getText().toString().trim();
         final String email = emailEditText.getText().toString().trim();
         final String password = passwordEditText.getText().toString().trim();
         final String phoneNumber = phoneEditText.getText().toString().trim();
 
         if (TextUtils.isEmpty(fullName)) {
+            progressBar.setVisibility(View.GONE);
             nameEditText.setError("Full name is required");
             return;
         }
 
         if (TextUtils.isEmpty(email)) {
+            progressBar.setVisibility(View.GONE);
             emailEditText.setError("Email is required");
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
+            progressBar.setVisibility(View.GONE);
             passwordEditText.setError("Password is required");
             return;
         }
 
         if (TextUtils.isEmpty(phoneNumber)) {
+            progressBar.setVisibility(View.GONE);
             phoneEditText.setError("Phone number is required");
             return;
         }
@@ -100,6 +108,7 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressBar.setVisibility(View.GONE);
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(SignUpActivity.this, "Authentication success.",
@@ -120,6 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
+                            progressBar.setVisibility(View.GONE);
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
