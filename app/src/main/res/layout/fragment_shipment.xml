@@ -200,7 +200,7 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="Item Type"
+                        android:text="To"
                         android:textSize="20dp" />
 
                     <TextView
