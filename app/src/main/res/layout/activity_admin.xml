@@ -6,25 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin"
-    tools:menu="@menu/bottom_nav_admin_menu">
-
+   >
 
     <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="413dp"
-        android:layout_height="626dp"
-        android:layout_marginStart="1dp"
+        android:id="@+id/frame_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="651dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView2"
-        app:layout_constraintStart_toStartOf="parent" >
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView2"
-        android:layout_width="409dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="#00B8D4"
-        app:menu="@menu/bottom_nav_admin_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_admin_menu"
+        android:background="@color/blue"
+        tools:ignore="VisualLintBottomNav" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

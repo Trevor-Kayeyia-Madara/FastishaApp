@@ -2,19 +2,19 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
-        android:title="@string/home"
-        />
-    <item
-        android:id="@+id/shipment"
-        android:title="@string/agents"
-        />
-    <item
-        android:id="@+id/payment"
-        android:title="Users"
+        android:id="@+id/back"
+        android:title="Back"
         tools:ignore="HardcodedText" />
     <item
-        android:id="@+id/profile"
-        android:title="@string/log_out"
-        />
+        android:id="@+id/agent"
+        android:title="Agents"
+        tools:ignore="HardcodedText" />
+    <item
+        android:id="@+id/list"
+        android:title="List"
+        tools:ignore="HardcodedText" />
+    <item
+        android:id="@+id/logout"
+        android:title="Log Out"
+        tools:ignore="HardcodedText" />
 </menu>
