@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LogOutFragment#newInstance} factory method to
+ * Use the {@link AdminProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LogOutFragment extends Fragment {
+public class AdminProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class LogOutFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LogOutFragment() {
+    public AdminProfileFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class LogOutFragment extends Fragment {
      * @return A new instance of fragment LogOutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LogOutFragment newInstance(String param1, String param2) {
-        LogOutFragment fragment = new LogOutFragment();
+    public static AdminProfileFragment newInstance(String param1, String param2) {
+        AdminProfileFragment fragment = new AdminProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class LogOutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_log_out, container, false);
+        return inflater.inflate(R.layout.fragment_admin_profile, container, false);
     }
 }

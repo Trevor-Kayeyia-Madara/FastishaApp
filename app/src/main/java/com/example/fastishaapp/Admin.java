@@ -18,21 +18,21 @@ public class Admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        replaceFragment(new BackFragment());
+        replaceFragment(new AdminHomeFragment());
         setContentView(R.layout.activity_admin);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView2);
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
             int itemId =menuItem.getItemId();
 
-            if(itemId == R.id.back){
-                replaceFragment(new BackFragment());
-            }else if(itemId == R.id.shipment){
-                replaceFragment(new AgentFragment());
-            }else if(itemId == R.id.list) {
-                replaceFragment(new ListFragment());
-            }else if(itemId == R.id.logout) {
-                replaceFragment(new LogOutFragment());
+            if(itemId == R.id.adminHome){
+                replaceFragment(new AdminHomeFragment());
+            }else if(itemId == R.id.analytics){
+                replaceFragment(new AnalyticsFragment());
+            }else if(itemId == R.id.messages) {
+                replaceFragment(new MessagesFragment());
+            }else if(itemId == R.id.adminProfile) {
+                replaceFragment(new AdminProfileFragment());
             }
             return true;
         });
