@@ -91,11 +91,11 @@
             <Button
                 android:id="@+id/btnConfirm"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="50dp"
                 android:backgroundTint="@color/blue"
                 android:text="Click here to confirm"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/txtLocation"
                 tools:layout_editor_absoluteX="30dp" />
 
