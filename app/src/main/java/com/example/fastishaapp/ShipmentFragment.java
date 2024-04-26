@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
 
     private LocationManager locationManager;
     private TextView fromLocation, myLocation;
+    private ProgressBar progressBarOne,progressBarTwo;
 
 
     public ShipmentFragment() {
@@ -52,6 +54,9 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         Button confirm = view.findViewById(R.id.btnConfirm);
         fromLocation = view.findViewById(R.id.txtFromLocation);
         myLocation = view.findViewById(R.id.txtLocation);
+
+        progressBarOne = view.findViewById(R.id.locationProgressBar);
+        progressBarTwo = view.findViewById(R.id.locationTwoProgressBar);
 
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{
@@ -77,10 +82,13 @@ public class ShipmentFragment extends Fragment implements LocationListener {
     }
 
     private void getLocation() {
+        progressBarOne.setVisibility(View.VISIBLE);
+        progressBarTwo.setVisibility(View.VISIBLE);
         try {
             locationManager = (LocationManager) requireContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -88,12 +96,16 @@ public class ShipmentFragment extends Fragment implements LocationListener {
     @Override
     public void onLocationChanged(@NonNull Location location) {
         try {
+
             Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             String address = addresses.get(0).getAddressLine(0);
 
             fromLocation.setText(address);
             myLocation.setText(address);
+            progressBarOne.setVisibility(View.GONE);
+            progressBarTwo.setVisibility(View.GONE);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
