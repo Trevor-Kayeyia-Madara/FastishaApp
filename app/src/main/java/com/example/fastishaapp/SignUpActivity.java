@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
     TextView login;
-    EditText nameEditText, emailEditText, passwordEditText, phoneEditText;
+    EditText nameEditText, emailEditText, passwordEditText, phoneEditText, confirmPassword;
     Button signUpButton;
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
@@ -46,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.editTextTextEmail);
         passwordEditText = findViewById(R.id.editTextTextPassword);
+        confirmPassword = findViewById(R.id.edtConfirmPassword);
         phoneEditText = findViewById(R.id.editTextPhone);
         signUpButton = findViewById(R.id.signUpButton);
         login = findViewById(R.id.login);
@@ -77,30 +78,20 @@ public class SignUpActivity extends AppCompatActivity {
         final String email = emailEditText.getText().toString().trim();
         final String password = passwordEditText.getText().toString().trim();
         final String phoneNumber = phoneEditText.getText().toString().trim();
+        final  String confirmPwd = confirmPassword.getText().toString().trim();
 
-        if (TextUtils.isEmpty(fullName)) {
+        if (TextUtils.isEmpty(fullName) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||
+                TextUtils.isEmpty(phoneNumber) || TextUtils.isEmpty(phoneNumber)) {
             progressBar.setVisibility(View.GONE);
-            nameEditText.setError("Full name is required");
+            nameEditText.setError("Detail are required");
             return;
         }
 
-        if (TextUtils.isEmpty(email)) {
-            progressBar.setVisibility(View.GONE);
-            emailEditText.setError("Email is required");
-            return;
+        if(!password.equals(confirmPwd)){
+            Toast.makeText(this, "Password don't match", Toast.LENGTH_SHORT).show();
         }
 
-        if (TextUtils.isEmpty(password)) {
-            progressBar.setVisibility(View.GONE);
-            passwordEditText.setError("Password is required");
-            return;
-        }
 
-        if (TextUtils.isEmpty(phoneNumber)) {
-            progressBar.setVisibility(View.GONE);
-            phoneEditText.setError("Phone number is required");
-            return;
-        }
 
         // Create a new user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
