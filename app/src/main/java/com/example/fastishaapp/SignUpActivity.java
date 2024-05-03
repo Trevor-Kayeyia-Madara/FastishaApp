@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     ProgressBar progressBar;
+    RadioGroup radioGroupGender;
+    String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         login = findViewById(R.id.login);
         progressBar = findViewById(R.id.signupProgressBar);
+
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,14 +86,23 @@ public class SignUpActivity extends AppCompatActivity {
         final String phoneNumber = phoneEditText.getText().toString().trim();
         final  String confirmPwd = confirmPassword.getText().toString().trim();
 
+        radioGroupGender = findViewById(R.id.radioGroupGender);
+        int selectId = radioGroupGender.getCheckedRadioButtonId();
+
+        if (selectId !=-1){
+            RadioButton selectedRadioButton = findViewById(selectId);
+            gender = selectedRadioButton.getText().toString();
+        }
+
         if (TextUtils.isEmpty(fullName) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||
-                TextUtils.isEmpty(phoneNumber) || TextUtils.isEmpty(phoneNumber)) {
+                TextUtils.isEmpty(phoneNumber) || TextUtils.isEmpty(confirmPwd)) {
             progressBar.setVisibility(View.GONE);
             nameEditText.setError("Detail are required");
             return;
         }
 
         if(!password.equals(confirmPwd)){
+            progressBar.setVisibility(View.GONE);
             Toast.makeText(this, "Password don't match", Toast.LENGTH_SHORT).show();
         }
 
@@ -114,6 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
                             userRef.child("fullName").setValue(fullName);
                             userRef.child("phoneNumber").setValue(phoneNumber);
                             userRef.child("userUID").setValue(userId);
+                            userRef.child("gender").setValue(gender);
 
                             // Navigate to the next activity or perform any other action
                             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
