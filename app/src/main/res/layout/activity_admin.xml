@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="welcome, Admin!"
+        android:text=" Welcome, Admin!"
         android:textSize="30dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="0dp"
@@ -38,19 +38,41 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="Total Transactions 1000,000"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="117dp" />
+        tools:layout_editor_absoluteY="115dp" />
 
     <View
         android:layout_width="350dp"
-        android:layout_height="5dp"
+        android:layout_height="1dp"
         android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="163dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Recent Transactions"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="177dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+    </androidx.cardview.widget.CardView>
+
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView2"
@@ -61,6 +83,63 @@
         app:menu="@menu/bottom_nav_admin_menu"
         android:background="@color/blue"
         tools:ignore="VisualLintBottomNav" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/cardviewshape"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="228dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="Your Image"
+            android:src="@drawable/cardimage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Delivery"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="@id/imageView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Orders Overview"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toBottomOf="@id/textView1" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+            android:text="view"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
