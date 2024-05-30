@@ -27,12 +27,23 @@ public class MainActivity extends AppCompatActivity {
    Button loginButton;
    FirebaseAuth mAuth;
     TextView signup;
+    SessionManager sessionManager;
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        // Initialize SessionManager
+        sessionManager = new SessionManager(getApplicationContext());
+
+        // Check if user is already logged in
+        if (sessionManager.isLoggedIn()) {
+            // User is logged in, navigate to Customer activity
+            startActivity(new Intent(MainActivity.this, Customer.class));
+            finish();
+        }
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -77,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success
                             Toast.makeText(MainActivity.this, "Sign in successful",
                                     Toast.LENGTH_SHORT).show();
+                            // Set user as logged in
+                            sessionManager.setLoggedIn(true);
+
                             // You can add code here to navigate to another activity upon successful login
                             Intent intent = new Intent(MainActivity.this, Customer.class);
                             startActivity(intent);
