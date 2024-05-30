@@ -21,4 +21,6 @@
     <string name="agents">Agent</string>
     <string name="back">Back</string>
     <string name="currentTransaction">Current transaction</string>
+    <string name="delivery">Delivery</string>
+    <string name="price">Price</string>
 </resources>
