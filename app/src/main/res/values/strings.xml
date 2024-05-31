@@ -18,9 +18,15 @@
     <string name="agent">Agent</string>
     <string name="customers">Customers</string>
     <string name="log_out">Log Out</string>
-    <string name="agents">Agent</string>
+    <string name="agents">Agents</string>
     <string name="back">Back</string>
     <string name="currentTransaction">Current transaction</string>
     <string name="delivery">Delivery</string>
     <string name="price">Price</string>
+    <string name="totalTransaction">Total Transaction</string>
+    <string name="Welcome">Welcome</string>
+    <string name="recentTransaction">Recent Transaction</string>
+    <string name="ordersOverview">Orders Overview</string>
+    <string name="view">View</string>
+    <string name="statistics">Statistics</string>
 </resources>
