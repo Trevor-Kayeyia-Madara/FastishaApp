@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 public class SessionManager {
     private static final String session = "userSession";
     private static final String logged_in = "isLoggedIn";
+    private static  final String Key_is_admin = "isAdmin";
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private Context mContext;
@@ -18,10 +19,19 @@ public class SessionManager {
 
     public void setLoggedIn(boolean isLoggedIn) {
         editor.putBoolean(logged_in, isLoggedIn);
-        editor.apply();
+        editor.commit();
     }
 
     public boolean isLoggedIn() {
         return pref.getBoolean(logged_in, false);
+    }
+
+    public void setAdmin(boolean isAdmin){
+        editor.putBoolean(Key_is_admin, isAdmin);
+        editor.commit();
+    }
+
+    public boolean isAdmin(){
+        return pref.getBoolean(Key_is_admin, false);
     }
 }
