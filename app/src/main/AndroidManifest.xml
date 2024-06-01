@@ -17,6 +17,9 @@
         android:theme="@style/Theme.FastishaApp"
         tools:targetApi="31">
         <activity
+            android:name=".AgentDetail"
+            android:exported="false" />
+        <activity
             android:name=".Admin"
             android:exported="false" />
         <activity
