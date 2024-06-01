@@ -2,6 +2,7 @@ package com.example.fastishaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,12 +18,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     EditText emailEditText, passwordEditText;
     Button loginButton;
     FirebaseAuth mAuth;
+    DatabaseReference dbRef;
     TextView signup;
     SessionManager sessionManager;
     ProgressBar progressBar;
@@ -49,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mAuth = FirebaseAuth.getInstance();
+        dbRef = FirebaseDatabase.getInstance().getReference();
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -93,24 +102,43 @@ public class MainActivity extends AppCompatActivity {
                             // Set user as logged in
                             sessionManager.setLoggedIn(true);
 
-                            if (email.equals("admin@mail.com")) {
-                                // Set user as admin
-                                sessionManager.setAdmin(true);
-                                // Navigate to Admin activity
-                                Intent intent = new Intent(MainActivity.this, Admin.class);
-                                startActivity(intent);
-                            } else {
-                                // Set user as not admin
-                                sessionManager.setAdmin(false);
-                                // Navigate to Customer activity
-                                Intent intent = new Intent(MainActivity.this, Customer.class);
-                                startActivity(intent);
-                            }
+                            // Fetch user role from Realtime Database
+                            String userId = mAuth.getCurrentUser().getUid();
+                            dbRef.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        String role = snapshot.child("role").getValue(String.class);
+                                        if ("admin".equals(role)) {
+                                            // Set user as admin
+                                            sessionManager.setAdmin(true);
+                                            // Navigate to Admin activity
+                                            startActivity(new Intent(MainActivity.this, Admin.class));
+                                        } else if ("agent".equals(role)) {
+                                            //TODO Add agent activity
+                                        } else {
+                                            // Set user as not admin
+                                            sessionManager.setAdmin(false);
+                                            // Navigate to Customer activity
+                                            startActivity(new Intent(MainActivity.this, Customer.class));
+                                        }
+                                        finish();
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "Role not found.", Toast.LENGTH_SHORT).show();
+                                        Log.e(TAG, "Snapshot does not exist.");
+                                    }
+                                }
 
-                            finish();
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(MainActivity.this, "Failed to retrieve role.", Toast.LENGTH_SHORT).show();
+                                    Log.e(TAG, "DatabaseError: ", error.toException());
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "Authentication failed: ", task.getException());
                         }
                     }
                 });
