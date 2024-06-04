@@ -6,6 +6,8 @@
     <string name="password">Password</string>
     <string name="email">email</string>
     <string name="full_names">Full Names</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
     <string name="emailaddress">Email</string>
     <string name="sign_up">Sign Up</string>
     <string name="passwordsignup">Password</string>
@@ -29,4 +31,6 @@
     <string name="ordersOverview">Orders Overview</string>
     <string name="view">View</string>
     <string name="statistics">Statistics</string>
+    <string name="addAgent">Add Agent</string>
+    <string name="selectImage">Select Image</string>
 </resources>
