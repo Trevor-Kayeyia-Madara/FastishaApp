@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AddAgent extends AppCompatActivity {
-    Button selectImage;
+    Button selectImage, add_agent;
     ImageView imageView;
     private static final int GALLERY_REQUEST_CODE = 1;
 
@@ -34,6 +34,14 @@ public class AddAgent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openGallery();
+            }
+        });
+
+        add_agent = findViewById(R.id.add_agent_button);
+        add_agent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Add agent logic here
             }
         });
 
