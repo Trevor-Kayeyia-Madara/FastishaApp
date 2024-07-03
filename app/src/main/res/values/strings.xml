@@ -34,4 +34,5 @@
     <string name="addAgent">Add Agent</string>
     <string name="selectImage">Select Image</string>
     <string name="nationalID">National ID</string>
+    <string name="customerDetails">Customer Details</string>
 </resources>

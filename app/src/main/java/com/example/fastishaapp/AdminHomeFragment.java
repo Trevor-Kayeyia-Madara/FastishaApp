@@ -25,6 +25,7 @@ public class AdminHomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private Button agents;
+    private Button customers;
 
     public AdminHomeFragment() {
         // Required empty public constructor
@@ -64,6 +65,7 @@ public class AdminHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
         agents = view.findViewById(R.id.viewAgent);
+        customers = view.findViewById(R.id.viewCustomer);
 
         agents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +73,25 @@ public class AdminHomeFragment extends Fragment {
                 viewAgent();
             }
         });
+
+        customers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewCustomer();
+            }
+        });
+
+
         return view;
     }
 
     public void viewAgent() {
         Intent intent = new Intent(requireContext(), AgentDetail.class);
+        startActivity(intent);
+    }
+
+    public void viewCustomer() {
+        Intent intent = new Intent(requireContext(), CustomerDetails.class);
         startActivity(intent);
     }
 }
