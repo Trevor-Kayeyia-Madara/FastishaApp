@@ -54,6 +54,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         Button confirm = view.findViewById(R.id.btnConfirm);
         fromLocation = view.findViewById(R.id.txtFromLocation);
         myLocation = view.findViewById(R.id.txtLocation);
+        EditText edtItem = view.findViewById(R.id.edtItem);
 
         progressBarOne = view.findViewById(R.id.locationProgressBar);
         progressBarTwo = view.findViewById(R.id.locationTwoProgressBar);
@@ -69,7 +70,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
             public void onClick(View v) {
                 getLocation();
 
-                EditText edtItem = view.findViewById(R.id.edtItem);
+
                 EditText editDescription = view.findViewById(R.id.edtDescription);
 
                 TextView txtItem = view.findViewById(R.id.txtItem);
@@ -79,6 +80,19 @@ public class ShipmentFragment extends Fragment implements LocationListener {
                 txtDescription.setText(editDescription.getText().toString());
             }
         });
+
+        Button shipment = view.findViewById(R.id.btnShipment);
+
+        shipment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemType = edtItem.getText().toString();
+                Bundle bundle = new Bundle();
+
+            }
+        });
+
+
     }
 
     private void getLocation() {
