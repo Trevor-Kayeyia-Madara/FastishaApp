@@ -31,9 +31,9 @@ import java.util.Locale;
 public class ShipmentFragment extends Fragment implements LocationListener {
 
     private LocationManager locationManager;
-    private TextView fromLocation, myLocation, toLocation;
+    private TextView fromLocation, myLocation, toLocation, txtSenderPhoneNo, txtReceiverPhoneNo;
     private ProgressBar progressBarOne, progressBarTwo;
-    private EditText editTextToLocation, editDescription, edtItem;
+    private EditText editTextToLocation, editDescription, edtItem, senderPhoneNo, receiverPhoneNo;
 
     public ShipmentFragment() {
         // Required empty public constructor
@@ -61,6 +61,11 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         editDescription = view.findViewById(R.id.edtDescription);
         editTextToLocation = view.findViewById(R.id.headTo);
         toLocation = view.findViewById(R.id.txtToLocation);
+        senderPhoneNo = view.findViewById(R.id.userPhoneNO);
+        receiverPhoneNo = view.findViewById(R.id.receiverPhoneNO);
+        txtSenderPhoneNo = view.findViewById(R.id.txtSenderPhoneNo);
+        txtReceiverPhoneNo = view.findViewById(R.id.txtReceiverPhoneNo);
+
 
         progressBarOne = view.findViewById(R.id.locationProgressBar);
         progressBarTwo = view.findViewById(R.id.locationTwoProgressBar);
@@ -83,6 +88,9 @@ public class ShipmentFragment extends Fragment implements LocationListener {
 
                 txtItem.setText(edtItem.getText().toString());
                 txtDescription.setText(editDescription.getText().toString());
+
+                txtSenderPhoneNo.setText(senderPhoneNo.getText().toString());
+                txtReceiverPhoneNo.setText(receiverPhoneNo.getText().toString());
             }
         });
 
@@ -91,6 +99,8 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         shipment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sPhoneNo =senderPhoneNo.getText().toString();
+                String rPhoneNo =receiverPhoneNo.getText().toString();
                 String itemType = edtItem.getText().toString();
                 String description = editDescription.getText().toString();
                 String fromLocationText = fromLocation.getText().toString();
@@ -104,6 +114,9 @@ public class ShipmentFragment extends Fragment implements LocationListener {
                     intent.putExtra("description", description);
                     intent.putExtra("fromLocation", fromLocationText);
                     intent.putExtra("toLocation", toLocationText);
+                    intent.putExtra("sPhoneNo", sPhoneNo);
+                    intent.putExtra("rPhoneNo", rPhoneNo);
+
                     startActivity(intent);
                 }
             }

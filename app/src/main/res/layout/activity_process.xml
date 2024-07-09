@@ -6,6 +6,20 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/sendPhoneNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/receivePhoneNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ksh 200.00"
+        android:textSize="18sp" />
+
+    <TextView
         android:id="@+id/itemTypeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
