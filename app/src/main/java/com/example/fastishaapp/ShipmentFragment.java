@@ -106,8 +106,10 @@ public class ShipmentFragment extends Fragment implements LocationListener {
                 String fromLocationText = fromLocation.getText().toString();
                 String toLocationText = editTextToLocation.getText().toString();
 
-                if (itemType.isEmpty() || description.isEmpty() || fromLocationText.isEmpty() || toLocationText.isEmpty()) {
+                if (itemType.isEmpty() || description.isEmpty() ||  toLocationText.isEmpty()) {
                     Toast.makeText(getContext(), "All details should be filled", Toast.LENGTH_SHORT).show();
+                }else if(fromLocationText.isEmpty() ){
+                    Toast.makeText(getContext(), "Wait until the App has detect your location", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(getActivity(), Process.class);
                     intent.putExtra("itemType", itemType);
