@@ -3,6 +3,7 @@ package com.example.fastishaapp;
 import static android.content.Context.LOCATION_SERVICE;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
@@ -29,9 +31,9 @@ import java.util.Locale;
 public class ShipmentFragment extends Fragment implements LocationListener {
 
     private LocationManager locationManager;
-    private TextView fromLocation, myLocation;
-    private ProgressBar progressBarOne,progressBarTwo;
-
+    private TextView fromLocation, myLocation, toLocation;
+    private ProgressBar progressBarOne, progressBarTwo;
+    private EditText editTextToLocation, editDescription, edtItem;
 
     public ShipmentFragment() {
         // Required empty public constructor
@@ -51,10 +53,14 @@ public class ShipmentFragment extends Fragment implements LocationListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Button confirm = view.findViewById(R.id.btnConfirm);
         fromLocation = view.findViewById(R.id.txtFromLocation);
         myLocation = view.findViewById(R.id.txtLocation);
-        EditText edtItem = view.findViewById(R.id.edtItem);
+        edtItem = view.findViewById(R.id.edtItem);
+        editDescription = view.findViewById(R.id.edtDescription);
+        editTextToLocation = view.findViewById(R.id.headTo);
+        toLocation = view.findViewById(R.id.txtToLocation);
 
         progressBarOne = view.findViewById(R.id.locationProgressBar);
         progressBarTwo = view.findViewById(R.id.locationTwoProgressBar);
@@ -70,8 +76,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
             public void onClick(View v) {
                 getLocation();
 
-
-                EditText editDescription = view.findViewById(R.id.edtDescription);
+                toLocation.setText(editTextToLocation.getText().toString());
 
                 TextView txtItem = view.findViewById(R.id.txtItem);
                 TextView txtDescription = view.findViewById(R.id.txtDescription);
@@ -87,12 +92,22 @@ public class ShipmentFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
                 String itemType = edtItem.getText().toString();
-                Bundle bundle = new Bundle();
+                String description = editDescription.getText().toString();
+                String fromLocationText = fromLocation.getText().toString();
+                String toLocationText = editTextToLocation.getText().toString();
 
+                if (itemType.isEmpty() || description.isEmpty() || fromLocationText.isEmpty() || toLocationText.isEmpty()) {
+                    Toast.makeText(getContext(), "All details should be filled", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), Process.class);
+                    intent.putExtra("itemType", itemType);
+                    intent.putExtra("description", description);
+                    intent.putExtra("fromLocation", fromLocationText);
+                    intent.putExtra("toLocation", toLocationText);
+                    startActivity(intent);
+                }
             }
         });
-
-
     }
 
     private void getLocation() {
@@ -101,8 +116,7 @@ public class ShipmentFragment extends Fragment implements LocationListener {
         try {
             locationManager = (LocationManager) requireContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -110,7 +124,6 @@ public class ShipmentFragment extends Fragment implements LocationListener {
     @Override
     public void onLocationChanged(@NonNull Location location) {
         try {
-
             Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             String address = addresses.get(0).getAddressLine(0);

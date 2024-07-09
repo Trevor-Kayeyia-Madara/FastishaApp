@@ -19,6 +19,9 @@
         android:theme="@style/Theme.FastishaApp"
         tools:targetApi="31">
         <activity
+            android:name=".Process"
+            android:exported="false" />
+        <activity
             android:name=".CustomerDetails"
             android:exported="false" />
         <activity

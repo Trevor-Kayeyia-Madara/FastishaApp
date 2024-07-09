@@ -35,4 +35,5 @@
     <string name="selectImage">Select Image</string>
     <string name="nationalID">National ID</string>
     <string name="customerDetails">Customer Details</string>
+    <string name="mapFutureUpdate">Map will display here in the future update</string>
 </resources>
