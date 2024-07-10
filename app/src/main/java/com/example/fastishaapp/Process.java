@@ -1,6 +1,7 @@
 package com.example.fastishaapp;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+import java.util.Locale;
+
 public class Process extends AppCompatActivity {
-    TextView itemTypeTextView, descriptionTextView, fromLocationTextView, toLocationTextView, senderPhoneNo, receiverPhoneNo;
+    TextView itemTypeTextView, descriptionTextView, fromLocationTextView, toLocationTextView, senderPhoneNo, receiverPhoneNo,dateTextView,timeTextView;
     DatabaseReference databaseReference;
     Button confirm;
 
@@ -32,6 +36,16 @@ public class Process extends AppCompatActivity {
         toLocationTextView = findViewById(R.id.itemToLocation);
         senderPhoneNo = findViewById(R.id.sendPhoneNo);
         receiverPhoneNo = findViewById(R.id.receivePhoneNo);
+        dateTextView = findViewById(R.id.date);
+        timeTextView = findViewById(R.id.time);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+        String currentTime = timeFormat.format(new Date());
+
+        dateTextView.setText(currentDate);
+        timeTextView.setText(currentTime);
 
         Intent intent = getIntent();
         String itemType = intent.getStringExtra("itemType");
