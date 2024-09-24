@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +27,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button logout;
+    private TextView firstName, email;
 
 
 
@@ -92,5 +94,15 @@ public class ProfileFragment extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         requireActivity().finish();
+    }
+
+    public void display(){
+        firstName = firstName.findViewById(R.id.firstName);
+        email = email.findViewById(R.id.email);
+
+        //firstName.setText(sessionManager.getFirstName());
+        //email.setText(sessionManager.getEmail());
+
+
     }
 }
