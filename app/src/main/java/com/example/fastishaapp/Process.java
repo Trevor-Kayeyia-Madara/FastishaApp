@@ -5,6 +5,7 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class Process extends AppCompatActivity {
     TextView itemTypeTextView, descriptionTextView, fromLocationTextView, toLocationTextView, senderPhoneNo, receiverPhoneNo, dateTextView, timeTextView,transaction;
     DatabaseReference databaseReference;
     Button confirm;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class Process extends AppCompatActivity {
         dateTextView = findViewById(R.id.date);
         timeTextView = findViewById(R.id.time);
         transaction = findViewById(R.id.transaction);
+        progressBar = findViewById(R.id.processing_progress_bar);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
@@ -71,6 +74,7 @@ public class Process extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 String userUId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 DatabaseReference userItemsRef = databaseReference.child("users").child(userUId).child("your packages").push(); // Create a unique key for each item
 
@@ -78,57 +82,68 @@ public class Process extends AppCompatActivity {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if (databaseError != null) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                         } else {
                             userItemsRef.child("description").setValue(description, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                     if (databaseError != null) {
+                                        progressBar.setVisibility(View.GONE);
                                         Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                     } else {
                                         userItemsRef.child("fromLocation").setValue(fromLocation, new DatabaseReference.CompletionListener() {
                                             @Override
                                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                 if (databaseError != null) {
+                                                    progressBar.setVisibility(View.GONE);
                                                     Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                 } else {
                                                     userItemsRef.child("toLocation").setValue(toLocation, new DatabaseReference.CompletionListener() {
                                                         @Override
                                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                             if (databaseError != null) {
+                                                                progressBar.setVisibility(View.GONE);
                                                                 Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                             } else {
                                                                 userItemsRef.child("senderPhoneNo").setValue(phoneSender, new DatabaseReference.CompletionListener() {
                                                                     @Override
                                                                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                                         if (databaseError != null) {
+                                                                            progressBar.setVisibility(View.GONE);
                                                                             Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                                         } else {
                                                                             userItemsRef.child("receiverPhoneNo").setValue(phoneReceiver, new DatabaseReference.CompletionListener() {
                                                                                 @Override
                                                                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                                                     if (databaseError != null) {
+                                                                                        progressBar.setVisibility(View.GONE);
                                                                                         Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                                                     } else {
                                                                                         userItemsRef.child("date").setValue(currentDate, new DatabaseReference.CompletionListener() {
                                                                                             @Override
                                                                                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                                                                 if (databaseError != null) {
+                                                                                                    progressBar.setVisibility(View.GONE);
                                                                                                     Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                                                                 } else {
                                                                                                     userItemsRef.child("time").setValue(currentTime, new DatabaseReference.CompletionListener() {
                                                                                                         @Override
                                                                                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                                                                             if (databaseError != null) {
+                                                                                                                progressBar.setVisibility(View.GONE);
                                                                                                                 Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                                                                             } else {
                                                                                                                 userItemsRef.child("transactionCode").setValue(transactionCode, new DatabaseReference.CompletionListener() {
                                                                                                                     @Override
                                                                                                                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                                                                                         if (databaseError != null) {
+                                                                                                                            progressBar.setVisibility(View.GONE);
                                                                                                                             Toast.makeText(Process.this, "Failed to enter details: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                                                                                                                         } else {
+                                                                                                                            progressBar.setVisibility(View.GONE);
                                                                                                                             Toast.makeText(Process.this, "Details have been entered successfully", Toast.LENGTH_LONG).show();
+                                                                                                                            startActivity(new Intent(Process.this, Customer.class));
                                                                                                                         }
                                                                                                                     }
                                                                                                                 });
