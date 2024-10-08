@@ -41,141 +41,11 @@
             android:paddingBottom="20dp"
             android:textColor="@android:color/black" />
 
-        <!-- This section contains the payment/transaction details -->
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-        android:padding="15dp">
-
-        <!-- Item Type -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Item Type:"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- Item Description -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Description:"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- From Location -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="From Location:"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtFromLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- To Location -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="To Location:"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtToLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- Price Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Total Price:"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ksh 0.00"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- Divider line for separation -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="#CCCCCC" />
-
-        <!-- Payment Button -->
-        <Button
-            android:id="@+id/payNow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Pay Now"
-            android:textSize="18sp"
-            android:backgroundTint="@color/blue"
-            android:padding="10dp"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="20dp" />
-
+            android:id="@+id/myRecyleView"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-    <!-- Optional Section for Additional Info -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,6 +55,5 @@
         android:paddingTop="20dp"
         android:textColor="@android:color/black" />
 
-</LinearLayout>
+</FrameLayout>
 
-    </FrameLayout>

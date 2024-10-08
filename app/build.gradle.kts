@@ -48,7 +48,13 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.ads.lite)
+    implementation(project(":app"))
+    implementation(project(":app"))
+    implementation(project(":app"))
+    implementation(libs.annotation.jvm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }
