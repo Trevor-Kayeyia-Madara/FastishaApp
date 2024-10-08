@@ -1,14 +1,17 @@
 package com.example.fastishaapp;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.widget.ProgressBar;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,9 +24,10 @@ import java.util.List;
 
 public class PaymentFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    ItemAdapter itemAdapter;
-    List<MainModel> itemList; // To hold the data
+    private RecyclerView recyclerView;
+    private ItemAdapter itemAdapter;
+    private List<MainModel> itemList;
+    private ProgressBar progressBar;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -34,14 +38,7 @@ public class PaymentFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_payment, container, false);
     }
 
@@ -49,7 +46,10 @@ public class PaymentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize UI components
         recyclerView = view.findViewById(R.id.myRecyleView);
+        progressBar = view.findViewById(R.id.progressBar);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Initialize the list and adapter
@@ -57,27 +57,38 @@ public class PaymentFragment extends Fragment {
         itemAdapter = new ItemAdapter(itemList);
         recyclerView.setAdapter(itemAdapter);
 
-        // Assuming you have a method to fetch data from Firebase
+        // Fetch data from Firebase
         fetchItemsFromFirebase();
     }
 
     private void fetchItemsFromFirebase() {
-        // Replace with your Firebase Database reference
+        // Firebase Database reference (update "your_node_here" with the actual node)
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("your_node_here");
+
+        // Show ProgressBar while loading
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 itemList.clear(); // Clear previous data
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     MainModel item = snapshot.getValue(MainModel.class);
                     itemList.add(item); // Add the item to the list
                 }
-                itemAdapter.notifyDataSetChanged(); // Refresh RecyclerView
+
+                // Notify adapter of data change and update UI
+                itemAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE); // Show RecyclerView when data is ready
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Handle possible errors
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+                progressBar.setVisibility(View.GONE); // Hide progress bar if there's an error
             }
         });
     }

@@ -1,51 +1,35 @@
 package com.example.fastishaapp;
 
 public class MainModel {
-    String orderNumber, description, fromLocation, toLocation, price, status, item, receiverPhoneNo;
+    private String itemName;
+    private String itemDescription;
+    private double itemPrice;
 
-    public MainModel(String orderNumber, String description, String fromLocation, String toLocation, String price, String status, String item, String receiverPhoneNo) {
-        this.orderNumber = orderNumber;
-        this.description = description;
-        this.fromLocation = fromLocation;
-        this.toLocation = toLocation;
-        this.price = price;
-        this.status = status;
-        this.item = item;
-        this.receiverPhoneNo = receiverPhoneNo;
+    // Empty constructor for Firebase
+    public MainModel() {}
+
+    // Getter and Setter methods
+    public String getItemName() {
+        return itemName;
     }
 
-    public MainModel() {
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public String getDescription() {
-        return description;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    public String getFromLocation() {
-        return fromLocation;
+    public double getItemPrice() {
+        return itemPrice;
     }
 
-    public String getToLocation() {
-        return toLocation;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public String getReceiverPhoneNo() {
-        return receiverPhoneNo;
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }

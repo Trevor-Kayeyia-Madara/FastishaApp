@@ -4,13 +4,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private List<MainModel> itemList; // Change to MainModel
+    private List<MainModel> itemList;
 
     public ItemAdapter(List<MainModel> itemList) {
         this.itemList = itemList;
@@ -26,11 +28,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         MainModel item = itemList.get(position);
-        holder.orderNumber.setText(item.getOrderNumber());
-        holder.description.setText(item.getDescription());
-        holder.fromLocation.setText(item.getFromLocation());
-        holder.toLocation.setText(item.getToLocation());
-        // Set other fields as needed
+        holder.itemName.setText(item.getItemName());
+        holder.itemDescription.setText(item.getItemDescription());
+        holder.itemPrice.setText(String.valueOf(item.getItemPrice()));
     }
 
     @Override
@@ -39,14 +39,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView orderNumber, description, fromLocation, toLocation;
+        TextView itemName, itemDescription, itemPrice;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            orderNumber = itemView.findViewById(R.id.order_number);
-            description = itemView.findViewById(R.id.description); // Ensure this ID matches your item_layout
-            fromLocation = itemView.findViewById(R.id.locationFom); // Ensure this ID matches your item_layout
-            toLocation = itemView.findViewById(R.id.locationTo); // Ensure this ID matches your item_layout
+            itemName = itemView.findViewById(R.id.itemName);
+            itemDescription = itemView.findViewById(R.id.itemDescription);
+            itemPrice = itemView.findViewById(R.id.itemPrice);
         }
     }
 }

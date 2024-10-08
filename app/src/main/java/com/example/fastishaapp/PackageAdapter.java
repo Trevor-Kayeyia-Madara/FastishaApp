@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageViewHolder> { // Remove generic type here
+public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageViewHolder> {
 
     private List<PackageData> packageList;
 
-    public PackageAdapter(List<PackageData> packageList) { // Use PackageData directly
+    public PackageAdapter(List<PackageData> packageList) {
         this.packageList = packageList;
     }
 
@@ -32,11 +32,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         holder.descriptionTextView.setText(packageData.getDescription());
         holder.fromLocationTextView.setText(packageData.getFromLocation());
         holder.toLocationTextView.setText(packageData.getToLocation());
-        holder.senderPhoneNoTextView.setText(packageData.getSenderPhoneNo());
-        holder.receiverPhoneNoTextView.setText(packageData.getReceiverPhoneNo());
-        holder.dateTextView.setText(packageData.getDate());
-        holder.timeTextView.setText(packageData.getTime());
-        holder.transactionTextView.setText(packageData.getTransactionCode());
+        // Set other fields...
     }
 
     @Override
@@ -46,7 +42,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
 
     public static class PackageViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemTypeTextView, descriptionTextView, fromLocationTextView, toLocationTextView, senderPhoneNoTextView, receiverPhoneNoTextView, dateTextView, timeTextView, transactionTextView;
+        TextView itemTypeTextView, descriptionTextView, fromLocationTextView, toLocationTextView;
 
         public PackageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,11 +50,6 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             fromLocationTextView = itemView.findViewById(R.id.fromLocationTextView);
             toLocationTextView = itemView.findViewById(R.id.toLocationTextView);
-            senderPhoneNoTextView = itemView.findViewById(R.id.senderPhoneNoTextView);
-            receiverPhoneNoTextView = itemView.findViewById(R.id.receiverPhoneNoTextView);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
-            timeTextView = itemView.findViewById(R.id.timeTextView);
-            transactionTextView = itemView.findViewById(R.id.transactionTextView);
         }
     }
 }

@@ -17,16 +17,16 @@ import java.util.List;
 public class PackageListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private PackageAdapter packageAdapter; // Remove generic type here
+    private PackageAdapter packageAdapter;
     private List<PackageData> packageDataList;
     private DatabaseReference databaseReference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // Correct method signature
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package_list);
+        setContentView(R.layout.recycleview);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.myRecyleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         packageDataList = new ArrayList<>();
@@ -39,11 +39,11 @@ public class PackageListActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                packageDataList.clear(); // Clear the old list
+                packageDataList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     PackageData packageData = snapshot.getValue(PackageData.class);
                     if (packageData != null) {
-                        packageDataList.add(packageData); // Ensure packageData is not null
+                        packageDataList.add(packageData);
                     }
                 }
                 packageAdapter.notifyDataSetChanged();
