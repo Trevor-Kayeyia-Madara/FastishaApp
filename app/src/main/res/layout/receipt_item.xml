@@ -1,122 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@drawable/receipt_background"
-    android:layout_marginBottom="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp">
 
-    <!-- Item Type -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Item Type:"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtItem"
+            android:id="@+id/order_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N/A"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <!-- Item Description -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Description:"
             android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:text="#we23jrds"/>
 
         <TextView
-            android:id="@+id/txtDescription"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N/A"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <!-- From Location -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:textSize="14sp"
+            android:layout_marginLeft="20dp"
+            android:text="Description"/>
 
         <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="From Location:"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtFromLocation"
+            android:id="@+id/locationFom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N/A"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <!-- To Location -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:text="From Location"/>
 
         <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="To Location:"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtToLocation"
+            android:id="@+id/locationTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N/A"
-            android:textSize="18sp" />
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:text="To Location"/>
+
+        <!-- Add more views as needed -->
     </LinearLayout>
-
-    <!-- Price -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Price:"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ksh 0.00"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <!-- Divider -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#CCCCCC" />
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
