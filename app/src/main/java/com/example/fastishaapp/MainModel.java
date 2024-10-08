@@ -2,13 +2,13 @@ package com.example.fastishaapp;
 
 public class MainModel {
     private String date, description, fromLocation, item, receiverPhoneNo, senderPhoneNo;
-    private String time,toLocation, transactionCode, email;
+    private String time,toLocation, transactionCode;
 
     public MainModel() {
         // Default constructor required for Firebase
     }
 
-    public MainModel(String date, String description, String fromLocation, String item, String receiverPhoneNo, String senderPhoneNo, String time, String toLocation, String transactionCode, String email) {
+    public MainModel(String date, String description, String fromLocation, String item, String receiverPhoneNo, String senderPhoneNo, String time, String toLocation, String transactionCode) {
         this.date = date;
         this.description = description;
         this.fromLocation = fromLocation;
@@ -18,7 +18,6 @@ public class MainModel {
         this.time = time;
         this.toLocation = toLocation;
         this.transactionCode = transactionCode;
-        this.email = email;
     }
 
     public String getDate() {
@@ -93,11 +92,4 @@ public class MainModel {
         this.transactionCode = transactionCode;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

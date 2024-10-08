@@ -1,71 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaymentFragment">
+    android:orientation="vertical">
 
-    <!-- Main container for the receipt layout -->
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <!-- Header with Logo -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <!-- Profile or Company Logo -->
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/profile"/>
-        </LinearLayout>
-
-        <!-- Transaction Title -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Receipt"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
-            android:paddingBottom="20dp"
-            android:textColor="@android:color/black" />
-
-        <!-- RecyclerView to display the data -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/rv"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            /> <!-- Initially hidden -->
-
-        <!-- ProgressBar while loading data -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"/> <!-- Initially visible -->
-    </LinearLayout>
-
-    <!-- Footer Message -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thank you for using our service!"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_marginTop="35dp"
-        android:paddingTop="20dp"
-        android:textColor="@android:color/black" />
-</FrameLayout>
+        android:layout_marginTop="16dp" />
+</LinearLayout>
