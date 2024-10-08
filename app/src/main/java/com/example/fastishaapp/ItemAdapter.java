@@ -21,16 +21,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.package_item_layout, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         MainModel item = itemList.get(position);
-        holder.itemName.setText(item.getItemName());
-        holder.itemDescription.setText(item.getItemDescription());
-        holder.itemPrice.setText(String.valueOf(item.getItemPrice()));
+        holder.itemTextView.setText(item.getItem());
+        holder.descriptionTextView.setText(item.getDescription());
+        holder.transactionCodeTextView.setText(item.getTransactionCode());
+        holder.dateTextView.setText(item.getDate());
+        holder.timeTextView.setText(item.getTime());
     }
 
     @Override
@@ -39,13 +41,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView itemName, itemDescription, itemPrice;
+        TextView itemTextView, descriptionTextView, transactionCodeTextView, dateTextView, timeTextView;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.itemName);
-            itemDescription = itemView.findViewById(R.id.itemDescription);
-            itemPrice = itemView.findViewById(R.id.itemPrice);
+            itemTextView = itemView.findViewById(R.id.itemTypeTextView);
+            descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
+            //transactionCodeTextView = itemView.findViewById(R.id.transactionCodeTextView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            timeTextView = itemView.findViewById(R.id.timeTextView);
         }
     }
 }

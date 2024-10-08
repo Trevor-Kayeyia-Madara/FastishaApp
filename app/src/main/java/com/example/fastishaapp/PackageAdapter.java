@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageViewHolder> {
 
-    private List<PackageData> packageList;
+    private final List<PackageData> packageList;
 
     public PackageAdapter(List<PackageData> packageList) {
         this.packageList = packageList;
@@ -48,8 +48,8 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
             super(itemView);
             itemTypeTextView = itemView.findViewById(R.id.itemTypeTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
-            fromLocationTextView = itemView.findViewById(R.id.fromLocationTextView);
-            toLocationTextView = itemView.findViewById(R.id.toLocationTextView);
+            //fromLocationTextView = itemView.findViewById(R.id.fromLocationTextView);
+            //toLocationTextView = itemView.findViewById(R.id.toLocationTextView);
         }
     }
 }

@@ -1,67 +1,37 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/itemTypeTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:text="Item Type" />
 
-        <TextView
-            android:id="@+id/itemTypeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Item Type" />
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description" />
 
-        <TextView
-            android:id="@+id/descriptionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description" />
+    <TextView
+        android:id="@+id/transactionCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction Code" />
 
-        <TextView
-            android:id="@+id/fromLocationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="From Location" />
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date" />
 
-        <TextView
-            android:id="@+id/toLocationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To Location" />
-
-        <TextView
-            android:id="@+id/senderPhoneNoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sender Phone No" />
-
-        <TextView
-            android:id="@+id/receiverPhoneNoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Receiver Phone No" />
-
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date" />
-
-        <TextView
-            android:id="@+id/timeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time" />
-
-        <TextView
-            android:id="@+id/transactionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transaction Code" />
-
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time" />
+</LinearLayout>

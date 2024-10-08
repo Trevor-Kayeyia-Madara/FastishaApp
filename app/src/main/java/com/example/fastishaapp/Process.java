@@ -76,7 +76,7 @@ public class Process extends AppCompatActivity {
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
                 String userUId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                DatabaseReference userItemsRef = databaseReference.child("users").child(userUId).child("your packages").push(); // Create a unique key for each item
+                DatabaseReference userItemsRef = databaseReference.child("users").child(userUId).child("your_packages").push(); // Create a unique key for each item
 
                 userItemsRef.child("item").setValue(itemType, new DatabaseReference.CompletionListener() {
                     @Override
