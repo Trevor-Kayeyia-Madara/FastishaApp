@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="30dp"
+    android:gravity="center"
     tools:context=".Login">
 
     <TextView
@@ -16,34 +18,49 @@
         android:textStyle="bold"
         android:text="@string/app_name"/>
 
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fastisha_launcher"
+        android:layout_marginTop="10dp"
+        android:contentDescription="App Logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="40sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="150dp"
+
+        android:layout_marginTop="10dp"
         android:text="@string/login"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="@string/p_s_i_t_c"/>
 
     <EditText
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:layout_width="350dp"
+        android:id="@+id/emailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/email"
-        android:layout_height="wrap_content"/>
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:layout_width="350dp"
-        android:hint="@string/password"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/passwordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="16dp"/>
 
     <LinearLayout
         android:layout_marginTop="40dp"
@@ -52,9 +69,10 @@
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:hint="@string/login"
+            android:backgroundTint="@color/blue"
             android:textSize="30sp"
             android:layout_height="wrap_content"/>
 
@@ -63,6 +81,7 @@
             android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:hint="@string/sign_up"
+            android:backgroundTint="@color/blue"
             android:textSize="30sp"
             android:layout_height="wrap_content"/>
 
