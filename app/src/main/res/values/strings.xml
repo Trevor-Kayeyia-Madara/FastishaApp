@@ -2,6 +2,8 @@
     <string name="app_name">Fastisha App</string>
     <string name="new_user_sign_up">New user?Sign Up</string>
     <string name="log_in">Log in</string>
+    <string name="p_s_i_t_c">Please sign in to continue</string>
+    <string name="login">Login</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="password">Password</string>
     <string name="email">email</string>
