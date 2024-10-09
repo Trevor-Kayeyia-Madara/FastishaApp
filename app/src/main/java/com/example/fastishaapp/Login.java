@@ -12,9 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 public class Login extends AppCompatActivity {
     Button login, signup;
     EditText email, password;
+    FirebaseAuth mAuth;
+    DatabaseReference mRef;
 
 
     @Override
