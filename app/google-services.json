@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "670557493065",
-    "project_id": "fastishaapp-d8776",
-    "storage_bucket": "fastishaapp-d8776.appspot.com"
+    "project_number": "592242404796",
+    "firebase_url": "https://fastishaapp-56daf-default-rtdb.firebaseio.com",
+    "project_id": "fastishaapp-56daf",
+    "storage_bucket": "fastishaapp-56daf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:670557493065:android:8fbff78066642823062c98",
+        "mobilesdk_app_id": "1:592242404796:android:3b0762a4ce342945090fb9",
         "android_client_info": {
           "package_name": "com.example.fastishaapp"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB445r5oaLXq6qoU4UvEWLjYsQw6BF42Po"
+          "current_key": "AIzaSyDpwrQIrv8UHptBxfhMV3yyQyXhIQfth40"
         }
       ],
       "services": {
