@@ -32,6 +32,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="20px"
+        android:background="@color/blue"
         app:layout_constraintTop_toBottomOf="@+id/linearOne">
 
     </ScrollView>
