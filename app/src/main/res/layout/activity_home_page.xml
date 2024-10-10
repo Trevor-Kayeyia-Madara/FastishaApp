@@ -98,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
+                android:clickable="true"
                 android:elevation="3dp"
                 android:background="@drawable/colorless_background"
                 android:gravity="center">
