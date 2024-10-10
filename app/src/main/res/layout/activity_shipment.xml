@@ -30,12 +30,30 @@
     </LinearLayout>
 
     <ScrollView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20px"
-        android:background="@color/blue"
+        android:background="@drawable/rounded_background"
         app:layout_constraintTop_toBottomOf="@+id/linearOne">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:hint="my location"/>
 
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:hint="location"/>
+        </LinearLayout>
     </ScrollView>
 
 
