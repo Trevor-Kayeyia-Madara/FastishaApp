@@ -5,14 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:padding="5dp"
     tools:context=".Shipment">
 
     <LinearLayout
         android:id="@+id/linearOne"
-        android:background="@drawable/rounded_background"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,13 +23,16 @@
             android:layout_marginStart="20dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/baseline_arrow_circle_left_24"/>
+            android:src="@drawable/baseline_chevron_left_24"
+            android:background="@drawable/small_white_rounded_background"
+            />
 
         <TextView
             android:layout_marginStart="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shipment"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -35,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20px"
-        android:background="@drawable/rounded_background"
+        android:background="@drawable/white_rounded_background"
         app:layout_constraintTop_toBottomOf="@+id/linearOne">
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_background"
-                android:hint="my location"/>
+                android:hint="Destination"/>
             </LinearLayout>
 
             <TextView
@@ -83,6 +89,20 @@
                 android:layout_height="wrap_content"
                 android:text="Product Weight"
                 android:textSize="20sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <EditText
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="my location"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
