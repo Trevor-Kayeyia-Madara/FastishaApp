@@ -1,6 +1,6 @@
 <!-- res/drawable/rounded_background.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/blue" /> <!-- Background color -->
+    <solid android:color="@color/cream" /> <!-- Background color -->
     <corners android:radius="20dp" /><!-- Round corner radius -->
     <padding
         android:left="10dp"
