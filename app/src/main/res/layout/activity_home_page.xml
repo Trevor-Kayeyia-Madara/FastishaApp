@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"> <!-- Use wrap_content here for the scroll effect -->
+        android:layout_height="match_parent"> <!-- Use wrap_content here for the scroll effect -->
 
         <ImageView
             android:id="@+id/ivMenu"
