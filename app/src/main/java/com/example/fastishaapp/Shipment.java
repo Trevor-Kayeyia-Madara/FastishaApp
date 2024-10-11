@@ -1,7 +1,10 @@
 package com.example.fastishaapp;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +13,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Shipment extends AppCompatActivity {
-    EditText trackNumber;
+    EditText myLoaction, destination, productName, productWeight, productDetail;
+    DatePicker date;
+    Button submit;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +28,19 @@ public class Shipment extends AppCompatActivity {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 //            return insets;
 //        });
+
+        back = findViewById(R.id.back);
+        myLoaction = findViewById(R.id.myLocation);
+        destination = findViewById(R.id.destination);
+        productName = findViewById(R.id.productName);
+        productWeight = findViewById(R.id.productKg);
+        date = findViewById(R.id.currentDate);
+        productDetail = findViewById(R.id.productDetails);
+        submit = findViewById(R.id.signUpButton);
+
+
+
+
 
     }
 }
