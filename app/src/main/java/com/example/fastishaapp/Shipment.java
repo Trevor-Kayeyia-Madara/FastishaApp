@@ -44,9 +44,16 @@ public class Shipment extends AppCompatActivity {
             startActivity(intent);
         });
 
+        final String txtMyLocation = myLoaction.getText().toString();
+        final String txtDestination = destination.getText().toString();
+        final String txtProduct = productName.getText().toString();
+        final String txtWeight = productWeight.getText().toString();
+        final String txtDetail = productDetail.getText().toString();
 
-
-
+        int day = date.getDayOfMonth();
+        int month = date.getMonth() + 1;  // Month is 0-based, so add 1
+        int year = date.getYear();
+        final String txtDate = day + "/" + month + "/" + year;
 
     }
 }
