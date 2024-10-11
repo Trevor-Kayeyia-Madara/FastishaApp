@@ -1,5 +1,6 @@
 package com.example.fastishaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -37,6 +38,11 @@ public class Shipment extends AppCompatActivity {
         date = findViewById(R.id.currentDate);
         productDetail = findViewById(R.id.productDetails);
         submit = findViewById(R.id.signUpButton);
+
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(Shipment.this, Login.class );
+            startActivity(intent);
+        });
 
 
 
