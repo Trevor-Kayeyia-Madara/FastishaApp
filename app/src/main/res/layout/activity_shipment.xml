@@ -39,7 +39,7 @@
     <ScrollView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="20px"
         android:background="@drawable/white_rounded_background"
         app:layout_constraintTop_toBottomOf="@+id/linearOne">
@@ -50,8 +50,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
                 <ImageView
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="5dp"
@@ -60,6 +59,7 @@
                     android:src="@drawable/baseline_my_location_24"/>
                 <EditText
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
@@ -79,14 +79,30 @@
             <EditText
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_background"
                 android:hint="Destination"/>
             </LinearLayout>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:hint="Product name"
+                android:layout_marginRight="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Weight"
@@ -98,6 +114,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:inputType="numberDecimal"
                     android:id="@+id/editText"
                     android:layout_marginRight="50dp"
                     android:layout_width="match_parent"
@@ -125,13 +142,41 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="Pickup Date"
+                android:textStyle="bold"
+                android:textSize="20sp" />
 
-            </LinearLayout>
 
+            <DatePicker
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Details"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="SUBMIT"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"/>
         </LinearLayout>
     </ScrollView>
 
