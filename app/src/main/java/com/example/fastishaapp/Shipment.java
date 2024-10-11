@@ -1,6 +1,9 @@
 package com.example.fastishaapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -8,7 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,6 +24,7 @@ public class Shipment extends AppCompatActivity {
     DatePicker date;
     Button submit;
     ImageView back;
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,7 @@ public class Shipment extends AppCompatActivity {
         productWeight = findViewById(R.id.productKg);
         date = findViewById(R.id.currentDate);
         productDetail = findViewById(R.id.productDetails);
-        submit = findViewById(R.id.signUpButton);
+        submit = findViewById(R.id.submitBtn);
 
         back.setOnClickListener(view -> {
             Intent intent = new Intent(Shipment.this, Login.class );
@@ -55,5 +62,21 @@ public class Shipment extends AppCompatActivity {
         int year = date.getYear();
         final String txtDate = day + "/" + month + "/" + year;
 
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
+
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Location permission granted, handle location logic here if needed
+        }
     }
 }
