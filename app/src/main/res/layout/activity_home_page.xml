@@ -8,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"> <!-- Use wrap_content here for the scroll effect -->
 
@@ -204,15 +205,6 @@
                     android:gravity="center"/>
             </LinearLayout>
         </GridLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="45dp"
-            android:layout_height="60dp"
-            android:background="@drawable/rounded_background"
-            app:layout_constraintTop_toBottomOf="@id/gridPackagesOne"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
