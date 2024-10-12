@@ -16,6 +16,9 @@
         android:theme="@style/Theme.FastishaApp"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentConfirmation"
+            android:exported="false" />
+        <activity
             android:name=".Shipment"
             android:exported="false" />
         <activity

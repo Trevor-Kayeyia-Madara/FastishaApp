@@ -10,18 +10,17 @@
     tools:context=".Shipment">
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:id="@+id/linearOne"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/back"
             android:clickable="true"
-            android:layout_marginStart="20dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/baseline_chevron_left_24"
@@ -29,8 +28,8 @@
             />
 
         <TextView
-            android:layout_marginStart="100dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:text="Shipment"
             android:textColor="@color/white"
@@ -38,7 +37,7 @@
     </LinearLayout>
 
     <ScrollView
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20px"
