@@ -26,6 +26,7 @@ public class HomePage extends AppCompatActivity {
 
         shipmentLayer = findViewById(R.id.shipmentLayer);
         historyLayer = findViewById(R.id.historyLayer);
+        accountLayer = findViewById(R.id.accountLayer);
 
         shipmentLayer.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, Shipment.class);
@@ -34,6 +35,11 @@ public class HomePage extends AppCompatActivity {
 
         historyLayer.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, History.class);
+            startActivity(intent);
+        });
+
+        accountLayer.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this, UserProfileActivity.class);
             startActivity(intent);
         });
     }
