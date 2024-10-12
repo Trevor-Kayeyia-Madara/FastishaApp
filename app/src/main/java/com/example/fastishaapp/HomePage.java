@@ -34,6 +34,7 @@ public class HomePage extends AppCompatActivity {
 
         historyLayer.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, History.class);
+            startActivity(intent);
         });
     }
 }
