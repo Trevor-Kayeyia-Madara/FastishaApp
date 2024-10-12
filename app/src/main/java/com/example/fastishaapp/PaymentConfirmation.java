@@ -3,11 +3,17 @@ package com.example.fastishaapp;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class PaymentConfirmation extends AppCompatActivity {
-    TextView productNameText, destinationText, weightText, priceText, currentDate, myCurrentLocation, taxTextView; // Renamed variable for clarity
+    TextView productNameText, destinationText, weightText, priceText, currentDate, myCurrentLocation, taxTextView;
     Button doneButton;
 
     @Override
@@ -23,7 +29,7 @@ public class PaymentConfirmation extends AppCompatActivity {
         currentDate = findViewById(R.id.currentDateText);
         myCurrentLocation = findViewById(R.id.myLocationText);
         doneButton = findViewById(R.id.DoneBtn);
-        taxTextView = findViewById(R.id.Tax); // Renamed variable for clarity
+        taxTextView = findViewById(R.id.Tax);
 
         // Get the data passed from the Shipment activity
         String productName = getIntent().getStringExtra("productName");
@@ -48,7 +54,34 @@ public class PaymentConfirmation extends AppCompatActivity {
         double finalAmount = totalPrice + calculatedTax;
 
         // Display tax and final amount
-        taxTextView.setText("Tax Fees: Sh. " + calculatedTax); // Use the renamed variable
+        taxTextView.setText("Tax Fees: Sh. " + calculatedTax);
         doneButton.setText("Payment Sh. " + finalAmount);
+
+        // Push data to Firebase
+        doneButton.setOnClickListener(view -> {
+            String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user's UID
+            pushDataToFirebase(userUID, productName, destination, weight, totalPrice, calculatedTax, finalAmount, date, location);
+        });
+    }
+
+    private void pushDataToFirebase(String userUID, String productName, String destination, String weight, double totalPrice, double calculatedTax, double finalAmount, String date, String location) {
+        // Create a reference to the Firebase Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userUID).child("your_packages");
+
+        // Create a Delivery object
+        Delivery delivery = new Delivery(productName, destination, weight, totalPrice, calculatedTax, finalAmount, date, location);
+
+        // Push the data to Firebase
+        String deliveryId = databaseReference.push().getKey(); // Generate a unique ID
+        if (deliveryId != null) {
+            databaseReference.child(deliveryId).setValue(delivery).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(PaymentConfirmation.this, "Data pushed successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PaymentConfirmation.this, "Failed to push data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
+
