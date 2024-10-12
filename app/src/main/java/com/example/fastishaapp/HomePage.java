@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class HomePage extends AppCompatActivity {
-    LinearLayout shipmentLayer;
+    LinearLayout shipmentLayer, historyLayer, accountLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,15 @@ public class HomePage extends AppCompatActivity {
 //        });
 
         shipmentLayer = findViewById(R.id.shipmentLayer);
+        historyLayer = findViewById(R.id.historyLayer);
 
         shipmentLayer.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, Shipment.class);
             startActivity(intent);
+        });
+
+        historyLayer.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this, History.class);
         });
     }
 }
