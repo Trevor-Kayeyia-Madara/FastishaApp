@@ -1,6 +1,7 @@
 package com.example.fastishaapp;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView userNameTextView, userEmailTextView, userGenderTextView, userPhoneTextView;
     private DatabaseReference userDatabaseRef;
     private FirebaseAuth mAuth;
+    Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class UserProfileActivity extends AppCompatActivity {
         userEmailTextView = findViewById(R.id.userEmailTextView);
         userGenderTextView = findViewById(R.id.userGenderTextView);
         userPhoneTextView = findViewById(R.id.userPhoneTextView);
+        logoutButton = findViewById(R.id.logoutBtn);
 
         // Initialize Firebase authentication
         mAuth = FirebaseAuth.getInstance();
@@ -69,6 +72,12 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(UserProfileActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        logoutButton.setOnClickListener(v -> {
+            mAuth.signOut();
+            Toast.makeText(UserProfileActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 }
