@@ -99,6 +99,7 @@
         android:padding="8dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
@@ -146,6 +147,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_margin="20dp"
+        android:clickable="true"
         android:background="@drawable/edittext_background"
         android:layout_height="wrap_content">
 
