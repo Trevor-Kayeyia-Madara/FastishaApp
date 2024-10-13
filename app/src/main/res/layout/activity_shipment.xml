@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -24,8 +25,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/baseline_chevron_left_24"
-            android:background="@drawable/small_white_rounded_background"
-            />
+            android:background="@drawable/small_white_rounded_background"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Shipment"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
     </LinearLayout>
 
     <ScrollView
@@ -43,10 +43,12 @@
         android:padding="20px"
         android:background="@drawable/white_rounded_background"
         app:layout_constraintTop_toBottomOf="@+id/linearOne">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -68,31 +70,49 @@
             </LinearLayout>
 
             <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/baseline_location_on_24"/>
-            <EditText
-                android:id="@+id/destination"
-                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background"
-                android:hint="Destination"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_location_on_24"/>
+                <EditText
+                    android:id="@+id/destination"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="Destination"/>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance:"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"/>
+
+            <org.osmdroid.views.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_below="@id/submitBtn" />
+
+
+
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Name"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/productName"
@@ -102,7 +122,7 @@
                 android:hint="Product name"
                 android:layout_marginRight="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:layout_marginTop="20dp"
@@ -110,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:text="Product Weight"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -125,7 +145,7 @@
                     android:background="@drawable/edittext_background"
                     android:hint="Enter estimated Weight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -141,7 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kg"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -152,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pickup Date"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <DatePicker
                 android:id="@+id/currentDate"
@@ -171,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:text="Product Details"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/productDetails"
@@ -189,7 +209,5 @@
                 android:background="@drawable/edittext_background"/>
         </LinearLayout>
     </ScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
