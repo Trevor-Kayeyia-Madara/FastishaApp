@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PaymentConfirmation extends AppCompatActivity {
-    TextView productNameText, destinationText, weightText, priceText, currentDate, myCurrentLocation, taxTextView;
+    TextView productNameText, destinationText, weightText, priceText, currentDate, myCurrentLocation, taxTextView, detailTextView;
     Button doneButton;
     ProgressBar progressBar;
 
@@ -35,6 +35,7 @@ public class PaymentConfirmation extends AppCompatActivity {
         doneButton = findViewById(R.id.DoneBtn);
         taxTextView = findViewById(R.id.Tax);
         progressBar = findViewById(R.id.confirmationProgress);
+        detailTextView = findViewById(R.id.detailsText);
 
         // Get the data passed from the Shipment activity
         String productName = getIntent().getStringExtra("productName");
@@ -43,6 +44,7 @@ public class PaymentConfirmation extends AppCompatActivity {
         double totalPrice = getIntent().getDoubleExtra("totalPrice", 0.0);
         String date = getIntent().getStringExtra("date");
         String location = getIntent().getStringExtra("myLocation");
+        String detail = getIntent().getStringExtra("detail");
 
         // Set the data to the TextViews
         productNameText.setText("Product: " + productName);
@@ -51,6 +53,7 @@ public class PaymentConfirmation extends AppCompatActivity {
         priceText.setText("Total Price: Sh. " + totalPrice);
         currentDate.setText("Current Date: " + date);
         myCurrentLocation.setText("My Current Location: " + location);
+        detailTextView.setText(detail);
 
         // Calculate tax (18% of price)
         double calculatedTax = totalPrice * 0.18;

@@ -42,7 +42,7 @@ public class Shipment extends AppCompatActivity {
 
         // Initialize views
         back = findViewById(R.id.back);
-        myLocation = findViewById(R.id.myLocation); //todo make shure the current location is added
+        myLocation = findViewById(R.id.myLocation);
         destination = findViewById(R.id.destination);
         productName = findViewById(R.id.productName);
         productWeight = findViewById(R.id.productKg);
@@ -74,16 +74,28 @@ public class Shipment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Validate user inputs
-                if (productName.getText().toString().isEmpty()) {
-                    Toast.makeText(Shipment.this, "Please enter the product name", Toast.LENGTH_SHORT).show();
+                if(myLocation.getText().toString().isEmpty()){
+                    myLocation.setError("Location is required");
                     return;
                 }
+
                 if (destination.getText().toString().isEmpty()) {
-                    Toast.makeText(Shipment.this, "Please enter a destination", Toast.LENGTH_SHORT).show();
+                    destination.setError("destination is required");
                     return;
                 }
+
+                if (productName.getText().toString().isEmpty()) {
+                    productName.setError("Product name is required");
+                    return;
+                }
+
                 if (productWeight.getText().toString().isEmpty()) {
-                    Toast.makeText(Shipment.this, "Please enter product weight", Toast.LENGTH_SHORT).show();
+                    productWeight.setError("Product weight is required");
+                    return;
+                }
+
+                if (productDetail.getText().toString().isEmpty()) {
+                    productDetail.setError("Product details is required");
                     return;
                 }
 
@@ -105,6 +117,7 @@ public class Shipment extends AppCompatActivity {
                 intent.putExtra("productName", productName.getText().toString());
                 intent.putExtra("destination", destination.getText().toString());
                 intent.putExtra("productWeight", productWeight.getText().toString());
+                intent.putExtra("detail",productDetail.getText().toString());
                 intent.putExtra("totalPrice", price); // Pass the calculated price
                 intent.putExtra("date", selectedDate); // Pass the selected date
                 startActivity(intent);
