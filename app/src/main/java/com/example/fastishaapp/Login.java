@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -127,9 +126,9 @@ public class Login extends AppCompatActivity {
     private void handleUserRole(String role) {
         if ("admin".equals(role)) {
             sessionManager.setAdmin(true);
-            // TODO: Add admin activity navigation
+            // Navigate to Admin activity
         } else if ("agent".equals(role)) {
-            // TODO: Add agent activity navigation
+            // Navigate to Agent activity
         } else {
             sessionManager.setAdmin(false);
             Intent intent = new Intent(Login.this, HomePage.class);
@@ -140,9 +139,9 @@ public class Login extends AppCompatActivity {
 
     private void navigateUserBasedOnRole() {
         if (sessionManager.isAdmin()) {
-            startActivity(new Intent(Login.this, HomePage.class)); // Navigate to admin page
+            startActivity(new Intent(Login.this, HomePage.class)); // Navigate to Admin page
         } else {
-            startActivity(new Intent(Login.this, HomePage.class)); // Navigate to customer page
+            startActivity(new Intent(Login.this, HomePage.class)); // Navigate to Customer page
         }
     }
 }

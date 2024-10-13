@@ -23,6 +23,16 @@ public class HomePage extends AppCompatActivity {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 //            return insets;
 //        });
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        if (!sessionManager.isLoggedIn()) {
+            // Redirect to Login if not logged in
+            Intent intent = new Intent(HomePage.this, Login.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         shipmentLayer = findViewById(R.id.shipmentLayer);
         historyLayer = findViewById(R.id.historyLayer);

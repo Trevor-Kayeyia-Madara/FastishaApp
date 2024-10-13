@@ -17,7 +17,7 @@ public class SessionManager {
 
     public void setLoggedIn(boolean isLoggedIn) {
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
-        editor.apply();
+        editor.commit();
     }
 
     public boolean isLoggedIn() {
@@ -31,5 +31,10 @@ public class SessionManager {
 
     public boolean isAdmin() {
         return sharedPreferences.getBoolean(KEY_IS_ADMIN, false);
+    }
+
+    public void clearSession() {
+        editor.clear();
+        editor.commit();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.fastishaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private DatabaseReference userDatabaseRef;
     private FirebaseAuth mAuth;
     Button logoutButton;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,25 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // Fetch and display the user data
         fetchUserBioData();
+
+        sessionManager = new SessionManager(this);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionManager.clearSession();
+                mAuth.signOut();
+                Toast.makeText(UserProfileActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
+
+                // Redirect the user to the Login activity
+                Intent intent = new Intent(UserProfileActivity.this, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                // Finish the current activity
+                finish();
+            }
+        });
     }
 
     private void fetchUserBioData() {
@@ -72,12 +94,6 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(UserProfileActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
             }
-        });
-
-        logoutButton.setOnClickListener(v -> {
-            mAuth.signOut();
-            Toast.makeText(UserProfileActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
-            finish();
         });
     }
 }
