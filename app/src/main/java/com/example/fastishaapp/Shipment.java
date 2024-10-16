@@ -1,6 +1,7 @@
 package com.example.fastishaapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -101,34 +102,31 @@ public class Shipment extends AppCompatActivity {
     // Get current location using FusedLocationProviderClient
     private void getCurrentLocation() {
         fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            try {
-                                // Use Geocoder to convert latitude and longitude into an address
-                                Geocoder geocoder = new Geocoder(Shipment.this, Locale.getDefault());
-                                List<Address> addresses = geocoder.getFromLocation(
-                                        location.getLatitude(), location.getLongitude(), 1);
+                .addOnSuccessListener(this, location -> {
+                    if (location != null) {
+                        try {
+                            // Use Geocoder to convert latitude and longitude into an address
+                            Geocoder geocoder = new Geocoder(Shipment.this, Locale.getDefault());
+                            List<Address> addresses = geocoder.getFromLocation(
+                                    location.getLatitude(), location.getLongitude(), 1);
 
-                                // Display address in the myLocation field
-                                if (!addresses.isEmpty()) {
-                                    myLocation.setText(addresses.get(0).getAddressLine(0));
-                                }
-
-                                // Add a marker at the current location on the map
-                                GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-                                Marker startMarker = new Marker(mapView);
-                                startMarker.setPosition(startPoint);
-                                startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                                startMarker.setTitle("My Location");
-
-                                mapView.getOverlays().add(startMarker);
-                                mapController.setCenter(startPoint);  // Center map to current location
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            // Display address in the myLocation field
+                            if (!addresses.isEmpty()) {
+                                myLocation.setText(addresses.get(0).getAddressLine(0));
                             }
+
+                            // Add a marker at the current location on the map
+                            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+                            Marker startMarker = new Marker(mapView);
+                            startMarker.setPosition(startPoint);
+                            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                            startMarker.setTitle("My Location");
+
+                            mapView.getOverlays().add(startMarker);
+                            mapController.setCenter(startPoint);  // Center map to current location
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                 });
@@ -153,13 +151,32 @@ public class Shipment extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(date.getYear(), date.getMonth(), date.getDayOfMonth());
 
-        // Here, you can add code to submit the shipment details to Firebase or other databases
+        // Calculate price based on weight
+        double weight = Double.parseDouble(productWeightText);
+        double price = calculatePrice(weight); // Calculate the price
+
+        // Prepare to send data to PaymentConfirmation activity
+        Intent intent = new Intent(Shipment.this, PaymentConfirmation.class);
+        intent.putExtra("myLocation", locationText); // Pass the location
+        intent.putExtra("productName", productNameText);
+        intent.putExtra("destination", destinationText);
+        intent.putExtra("productWeight", productWeightText);
+        intent.putExtra("detail", productDetailText);
+        intent.putExtra("totalPrice", price); // Pass the calculated price
+        intent.putExtra("date", calendar.getTimeInMillis()); // Pass the selected date as a timestamp
+        startActivity(intent);
 
         // Show success message after submission
         Toast.makeText(this, "Shipment details submitted", Toast.LENGTH_SHORT).show();
 
         // Go back to the previous screen after successful submission
         finish();
+    }
+
+    // Function to calculate price based on weight (decimal)
+    private double calculatePrice(double weight) {
+        double pricePerKg = 100.00; // 1 Kg = 100 shillings
+        return weight * pricePerKg;
     }
 
     // Handle the result of location permission request

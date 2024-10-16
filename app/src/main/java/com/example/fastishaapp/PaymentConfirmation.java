@@ -8,12 +8,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class PaymentConfirmation extends AppCompatActivity {
     TextView productNameText, destinationText, weightText, priceText, currentDate, myCurrentLocation, taxTextView, detailTextView;
@@ -46,12 +49,18 @@ public class PaymentConfirmation extends AppCompatActivity {
         String location = getIntent().getStringExtra("myLocation");
         String detail = getIntent().getStringExtra("detail");
 
+        // Convert the date string to a timestamp
+        long dateInMillis = Long.parseLong(date);
+        Date formattedDate = new Date(dateInMillis);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDateString = sdf.format(formattedDate);
+
         // Set the data to the TextViews
         productNameText.setText("Product: " + productName);
         destinationText.setText("Destination: " + destination);
         weightText.setText("Weight: " + weight + " kg");
         priceText.setText("Total Price: Sh. " + totalPrice);
-        currentDate.setText("Current Date: " + date);
+        currentDate.setText("Current Date: " + formattedDateString); // Display formatted date
         myCurrentLocation.setText("My Current Location: " + location);
         detailTextView.setText(detail);
 
@@ -91,16 +100,18 @@ public class PaymentConfirmation extends AppCompatActivity {
         String deliveryId = databaseReference.push().getKey(); // Generate a unique ID
         if (deliveryId != null) {
             databaseReference.child(deliveryId).setValue(delivery).addOnCompleteListener(task -> {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(PaymentConfirmation.this, "Data pushed successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(PaymentConfirmation.this, HomePage.class);
                     startActivity(intent);
                 } else {
-                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(PaymentConfirmation.this, "Failed to push data", Toast.LENGTH_SHORT).show();
                 }
             });
+        } else {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(PaymentConfirmation.this, "Failed to create delivery ID", Toast.LENGTH_SHORT).show();
         }
     }
 }
