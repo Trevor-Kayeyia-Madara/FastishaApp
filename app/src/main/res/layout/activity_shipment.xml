@@ -181,12 +181,14 @@
                 android:textSize="20sp"/>
 
             <DatePicker
+                android:visibility="gone"
                 android:id="@+id/currentDate"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TimePicker
+                android:visibility="gone"
                 android:id="@+id/currentTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
