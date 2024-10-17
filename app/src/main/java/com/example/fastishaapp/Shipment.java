@@ -141,9 +141,28 @@ public class Shipment extends AppCompatActivity {
         String productDetailText = productDetail.getText().toString();
 
         // Validate that all fields are filled
-        if (locationText.isEmpty() || destinationText.isEmpty() ||
-                productNameText.isEmpty() || productWeightText.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+        if(myLocation.getText().toString().isEmpty()){
+            myLocation.setError("Location is required");
+            return;
+        }
+
+        if (destination.getText().toString().isEmpty()) {
+            destination.setError("destination is required");
+            return;
+        }
+
+        if (productName.getText().toString().isEmpty()) {
+            productName.setError("Product name is required");
+            return;
+        }
+
+        if (productWeight.getText().toString().isEmpty()) {
+            productWeight.setError("Product weight is required");
+            return;
+        }
+
+        if (productDetail.getText().toString().isEmpty()) {
+            productDetail.setError("Product details is required");
             return;
         }
 
@@ -155,6 +174,12 @@ public class Shipment extends AppCompatActivity {
         double weight = Double.parseDouble(productWeightText);
         double price = calculatePrice(weight); // Calculate the price
 
+        int day = date.getDayOfMonth();
+        int month = date.getMonth();
+        int year = date.getYear();
+
+        String selectedDate = day + "/" + (month + 1) + "/" + year;
+
         // Prepare to send data to PaymentConfirmation activity
         Intent intent = new Intent(Shipment.this, PaymentConfirmation.class);
         intent.putExtra("myLocation", locationText); // Pass the location
@@ -163,7 +188,7 @@ public class Shipment extends AppCompatActivity {
         intent.putExtra("productWeight", productWeightText);
         intent.putExtra("detail", productDetailText);
         intent.putExtra("totalPrice", price); // Pass the calculated price
-        intent.putExtra("date", calendar.getTimeInMillis()); // Pass the selected date as a timestamp
+        intent.putExtra("date", selectedDate); // Pass the selected date as a timestamp
         startActivity(intent);
 
         // Show success message after submission
