@@ -34,7 +34,6 @@ import org.osmdroid.events.MapEventsReceiver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -115,18 +114,33 @@ public class Shipment extends AppCompatActivity {
                     mapView.getOverlays().remove(destinationMarker);
                 }
 
-                // Create and add a new marker at the tapped location
-                destinationMarker = new Marker(mapView);
-                destinationMarker.setPosition(p);
-                destinationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                destinationMarker.setTitle("Tapped Location");
+                // Reverse geocode to get the address of the tapped location
+                Geocoder geocoder = new Geocoder(Shipment.this, Locale.getDefault());
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(p.getLatitude(), p.getLongitude(), 1);
+                    if (addresses != null && !addresses.isEmpty()) {
+                        String address = addresses.get(0).getAddressLine(0);
 
-                mapView.getOverlays().add(destinationMarker);
-                mapController.setCenter(p);  // Center map to tapped location
-                mapView.invalidate();  // Refresh the map to show the marker
+                        // Create and add a new marker at the tapped location
+                        destinationMarker = new Marker(mapView);
+                        destinationMarker.setPosition(p);
+                        destinationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                        destinationMarker.setTitle(address);  // Set the address as the marker's title
 
-                // Update destination field with the tapped coordinates
-                destination.setText(p.getLatitude() + ", " + p.getLongitude());
+                        mapView.getOverlays().add(destinationMarker);
+                        mapController.setCenter(p);  // Center map to tapped location
+                        mapView.invalidate();  // Refresh the map to show the marker
+
+                        // Update destination field with the address
+                        destination.setText(address);
+                    } else {
+                        // Handle case where no address was found
+                        Toast.makeText(Shipment.this, "Address not found", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(Shipment.this, "Error fetching address", Toast.LENGTH_SHORT).show();
+                }
 
                 return true;  // Return true to indicate event is handled
             }
@@ -209,18 +223,14 @@ public class Shipment extends AppCompatActivity {
             return;
         }
 
-        // Get the selected date from DatePicker
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(date.getYear(), date.getMonth(), date.getDayOfMonth());
-
         // Calculate price based on weight
         double weight = Double.parseDouble(productWeightText);
         double price = calculatePrice(weight); // Calculate the price
 
+        // Get the selected date from DatePicker
         int day = date.getDayOfMonth();
         int month = date.getMonth();
         int year = date.getYear();
-
         String selectedDate = day + "/" + (month + 1) + "/" + year;
 
         // Prepare to send data to PaymentConfirmation activity
@@ -231,26 +241,19 @@ public class Shipment extends AppCompatActivity {
         intent.putExtra("productWeight", productWeightText);
         intent.putExtra("detail", productDetailText);
         intent.putExtra("totalPrice", price); // Pass the calculated price
-        intent.putExtra("date", selectedDate); // Pass the selected date as a timestamp
+        intent.putExtra("date", selectedDate);
+
         startActivity(intent);
-
-        // Show success message after submission
-        Toast.makeText(this, "Shipment details submitted", Toast.LENGTH_SHORT).show();
-
-        // Go back to the previous screen after successful submission
-        finish();
     }
 
-    // Function to calculate price based on weight (decimal)
+    // Method to calculate price based on weight
     private double calculatePrice(double weight) {
-        double pricePerKg = 100.00; // 1 Kg = 100 shillings
-        return weight * pricePerKg;
+        return weight * 100.0; // Example price calculation: 100 per kg
     }
 
-    // Handle the result of location permission request
+    // Handle permission result for location access
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
