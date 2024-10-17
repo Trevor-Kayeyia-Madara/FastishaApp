@@ -127,6 +127,9 @@ public class Shipment extends AppCompatActivity {
                         destinationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                         destinationMarker.setTitle(address);  // Set the address as the marker's title
 
+                        // Set the blue icon for the destination marker
+                        destinationMarker.setIcon(getResources().getDrawable(R.drawable.ic_marker_blue));
+
                         mapView.getOverlays().add(destinationMarker);
                         mapController.setCenter(p);  // Center map to tapped location
                         mapView.invalidate();  // Refresh the map to show the marker
@@ -179,6 +182,9 @@ public class Shipment extends AppCompatActivity {
                             startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                             startMarker.setTitle("My Location");
 
+                            // Set the red icon for the current location marker
+                            startMarker.setIcon(getResources().getDrawable(R.drawable.ic_marker_red));
+
                             mapView.getOverlays().add(startMarker);
                             mapController.setCenter(startPoint);  // Center map to current location
 
@@ -225,22 +231,19 @@ public class Shipment extends AppCompatActivity {
 
         // Calculate price based on weight
         double weight = Double.parseDouble(productWeightText);
-        double price = calculatePrice(weight); // Calculate the price
+        double price = calculatePrice(weight);
 
-        // Get the selected date from DatePicker
-        int day = date.getDayOfMonth();
-        int month = date.getMonth();
-        int year = date.getYear();
-        String selectedDate = day + "/" + (month + 1) + "/" + year;
+        // Get the selected date from the DatePicker
+        String selectedDate = date.getDayOfMonth() + "/" + (date.getMonth() + 1) + "/" + date.getYear();
 
-        // Prepare to send data to PaymentConfirmation activity
+        // Start the next activity and pass the data
         Intent intent = new Intent(Shipment.this, PaymentConfirmation.class);
-        intent.putExtra("myLocation", locationText); // Pass the location
-        intent.putExtra("productName", productNameText);
+        intent.putExtra("location", locationText);
         intent.putExtra("destination", destinationText);
+        intent.putExtra("productName", productNameText);
         intent.putExtra("productWeight", productWeightText);
-        intent.putExtra("detail", productDetailText);
-        intent.putExtra("totalPrice", price); // Pass the calculated price
+        intent.putExtra("productDetail", productDetailText);
+        intent.putExtra("price", String.valueOf(price));
         intent.putExtra("date", selectedDate);
 
         startActivity(intent);
