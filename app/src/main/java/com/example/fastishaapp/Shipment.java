@@ -22,7 +22,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -30,6 +29,8 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.osmdroid.events.MapEventsReceiver;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,8 @@ public class Shipment extends AppCompatActivity {
     TextView distance;
     MapView mapView;
     IMapController mapController;
+    Marker startMarker;  // Marker for current location
+    Marker destinationMarker;  // Marker for tapped location
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,46 @@ public class Shipment extends AppCompatActivity {
         mapView.setMultiTouchControls(true);
         mapController = mapView.getController();
         mapController.setZoom(15.0);  // Set default zoom level
+
+        // Add tap listener to the map to place a marker on tap
+        addTapListener();
+    }
+
+    // Method to add tap listener to the map
+    private void addTapListener() {
+        MapEventsReceiver mapEventsReceiver = new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint p) {
+                // If there's already a destination marker, remove it
+                if (destinationMarker != null) {
+                    mapView.getOverlays().remove(destinationMarker);
+                }
+
+                // Create and add a new marker at the tapped location
+                destinationMarker = new Marker(mapView);
+                destinationMarker.setPosition(p);
+                destinationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                destinationMarker.setTitle("Tapped Location");
+
+                mapView.getOverlays().add(destinationMarker);
+                mapController.setCenter(p);  // Center map to tapped location
+                mapView.invalidate();  // Refresh the map to show the marker
+
+                // Update destination field with the tapped coordinates
+                destination.setText(p.getLatitude() + ", " + p.getLongitude());
+
+                return true;  // Return true to indicate event is handled
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint p) {
+                return false;
+            }
+        };
+
+        // Add MapEventsOverlay to the map
+        MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(mapEventsReceiver);
+        mapView.getOverlays().add(mapEventsOverlay);
     }
 
     // Get current location using FusedLocationProviderClient
@@ -117,7 +160,7 @@ public class Shipment extends AppCompatActivity {
 
                             // Add a marker at the current location on the map
                             GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-                            Marker startMarker = new Marker(mapView);
+                            startMarker = new Marker(mapView);
                             startMarker.setPosition(startPoint);
                             startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                             startMarker.setTitle("My Location");
@@ -141,13 +184,13 @@ public class Shipment extends AppCompatActivity {
         String productDetailText = productDetail.getText().toString();
 
         // Validate that all fields are filled
-        if(myLocation.getText().toString().isEmpty()){
+        if (myLocation.getText().toString().isEmpty()) {
             myLocation.setError("Location is required");
             return;
         }
 
         if (destination.getText().toString().isEmpty()) {
-            destination.setError("destination is required");
+            destination.setError("Destination is required");
             return;
         }
 
@@ -162,7 +205,7 @@ public class Shipment extends AppCompatActivity {
         }
 
         if (productDetail.getText().toString().isEmpty()) {
-            productDetail.setError("Product details is required");
+            productDetail.setError("Product details are required");
             return;
         }
 
@@ -210,12 +253,11 @@ public class Shipment extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
-            // If permission is granted, get the current location
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
-                // If permission is denied, show a message
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                // Permission denied
+                Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
