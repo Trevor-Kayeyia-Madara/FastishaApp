@@ -236,16 +236,15 @@ public class Shipment extends AppCompatActivity {
         // Get the selected date from the DatePicker
         String selectedDate = date.getDayOfMonth() + "/" + (date.getMonth() + 1) + "/" + date.getYear();
 
-        // Start the next activity and pass the data
+        // Prepare to send data to PaymentConfirmation activity
         Intent intent = new Intent(Shipment.this, PaymentConfirmation.class);
-        intent.putExtra("location", locationText);
-        intent.putExtra("destination", destinationText);
-        intent.putExtra("productName", productNameText);
-        intent.putExtra("productWeight", productWeightText);
-        intent.putExtra("productDetail", productDetailText);
-        intent.putExtra("price", String.valueOf(price));
-        intent.putExtra("date", selectedDate);
-
+        intent.putExtra("myLocation", myLocation.getText().toString()); // Pass the location
+        intent.putExtra("productName", productName.getText().toString());
+        intent.putExtra("destination", destination.getText().toString());
+        intent.putExtra("productWeight", productWeight.getText().toString());
+        intent.putExtra("detail",productDetail.getText().toString());
+        intent.putExtra("totalPrice", price); // Pass the calculated price
+        intent.putExtra("date", selectedDate); // Pass the selected date
         startActivity(intent);
     }
 
